@@ -1,55 +1,191 @@
 //
 //  AppDelegate.m
-//  Bombs
+//  Detonate
 //
-//  Created by AnthonyGabriele on 1/26/13.
-//  Copyright (c) 2013 AnthonyGabriele. All rights reserved.
+//  Created by Anthony Gabriele on 1/13/12.
+//  Copyright __MyCompanyName__ 2012. All rights reserved.
 //
 
+#import "cocos2d.h"
+
 #import "AppDelegate.h"
+#import "GameConfig.h"
+#import "RootViewController.h"
+#import "MainMenuScene.h"
+#import "GamePreferences.h"
+#import "CDAudioManager.h"
+#import "SimpleAudioEngine.h"
+
 
 @implementation AppDelegate
 
-- (void)dealloc
+@synthesize window;
+@synthesize viewController;
+
+- (void) removeStartupFlicker
 {
-    [_window release];
-    [super dealloc];
+	//
+	// THIS CODE REMOVES THE STARTUP FLICKER
+	//
+	// Uncomment the following code if you Application only supports landscape mode
+	//
+#if GAME_AUTOROTATION == kGameAutorotationUIViewController
+    
+    //	CC_ENABLE_DEFAULT_GL_STATES();
+    //	CCDirector *director = [CCDirector sharedDirector];
+    //	CGSize size = [director winSize];
+    //	CCSprite *sprite = [CCSprite spriteWithFile:@"Default.png"];
+    //	sprite.position = ccp(size.width/2, size.height/2);
+    //	sprite.rotation = -90;
+    //	[sprite visit];
+    //	[[director openGLView] swapBuffers];
+    //	CC_ENABLE_DEFAULT_GL_STATES();
+	
+#endif // GAME_AUTOROTATION == kGameAutorotationUIViewController	
+}
+- (void) applicationDidFinishLaunching:(UIApplication*)application
+{
+	// Init the window
+	window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+	
+	// Try to use CADisplayLink director
+	// if it fails (SDK < 3.1) use the default director
+	if( ! [CCDirector setDirectorType:kCCDirectorTypeDisplayLink] )
+		[CCDirector setDirectorType:kCCDirectorTypeDefault];
+	
+	
+	CCDirector *director = [CCDirector sharedDirector];
+    
+	[director setDeviceOrientation:kCCDeviceOrientationLandscapeLeft];
+    
+	// Init the View Controller
+	viewController = [[RootViewController alloc] initWithNibName:nil bundle:nil];
+	viewController.wantsFullScreenLayout = YES;
+	
+	//
+	// Create the EAGLView manually
+	//  1. Create a RGB565 format. Alternative: RGBA8
+	//	2. depth format of 0 bit. Use 16 or 24 bit for 3d effects, like CCPageTurnTransition
+	//
+	//
+	EAGLView *glView = [EAGLView viewWithFrame:[window bounds]
+								   pixelFormat:kEAGLColorFormatRGB565	// kEAGLColorFormatRGBA8
+								   depthFormat:0						// GL_DEPTH_COMPONENT16_OES
+						];
+	
+	// attach the openglView to the director
+	[director setOpenGLView:glView];
+    [glView setMultipleTouchEnabled:YES];
+	
+    //	// Enables High Res mode (Retina Display) on iPhone 4 and maintains low res on all other devices
+    //	if( ! [director enableRetinaDisplay:YES] )
+    //		CCLOG(@"Retina Display Not supported");
+	
+	//
+	// VERY IMPORTANT:
+	// If the rotation is going to be controlled by a UIViewController
+	// then the device orientation should be "Portrait".
+	//
+	// IMPORTANT:
+	// By default, this template only supports Landscape orientations.
+	// Edit the RootViewController.m file to edit the supported orientations.
+	//
+#if GAME_AUTOROTATION == kGameAutorotationUIViewController
+	[director setDeviceOrientation:kCCDeviceOrientationPortrait];
+#else
+	[director setDeviceOrientation:kCCDeviceOrientationLandscapeLeft];
+#endif
+	
+	[director setAnimationInterval:1.0/60];
+	[director setDisplayFPS:YES];
+	
+	
+	// make the OpenGLView a child of the view controller
+	[viewController setView:glView];
+	
+	// make the View Controller a child of the main window
+	[window addSubview: viewController.view];
+	
+	[window makeKeyAndVisible];
+	
+	// Default texture format for PNG/BMP/TIFF/JPEG/GIF images
+	// It can be RGBA8888, RGBA4444, RGB5_A1, RGB565
+	// You can change anytime.
+	[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
+    
+	
+	// Removes the startup flicker
+	[self removeStartupFlicker];
+	
+    
+    //plays nice with iTunes
+    [[CDAudioManager sharedManager] setResignBehavior:kAMRBStopPlay autoHandle:YES];
+    
+    //pre-load all of the sounds
+    //[[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:@"Background.m4v"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"Pause.m4v"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"Bomb.m4v"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"Explosion.m4v"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"Heart.m4v"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"Projectile.m4v"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"Pain1.m4v"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"Pain2.m4v"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"PlayerDeath.m4v"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"PlayerHurt.m4v"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"Projectile.m4v"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"Thunk.m4v"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"Win.m4v"];
+    [SimpleAudioEngine sharedEngine].effectsVolume = 1.0;
+    [SimpleAudioEngine sharedEngine].backgroundMusicVolume = 0.75;
+    [SimpleAudioEngine sharedEngine].mute = NO;
+    
+	// Run the intro Scene
+	[[CCDirector sharedDirector] runWithScene: [MainMenuScene node]];
 }
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-    // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
-    return YES;
+
+- (void)applicationWillResignActive:(UIApplication *)application {
+	[[CCDirector sharedDirector] pause];
 }
 
-- (void)applicationWillResignActive:(UIApplication *)application
-{
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+    if(![GamePreferences sharedInstance].pauseScreenUp){
+        [[CCDirector sharedDirector] resume];
+    }
 }
 
-- (void)applicationDidEnterBackground:(UIApplication *)application
-{
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {
+	[[CCDirector sharedDirector] purgeCachedData];
 }
 
-- (void)applicationWillEnterForeground:(UIApplication *)application
-{
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+-(void) applicationDidEnterBackground:(UIApplication*)application {
+	[[CCDirector sharedDirector] stopAnimation];
 }
 
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+-(void) applicationWillEnterForeground:(UIApplication*)application {
+	[[CCDirector sharedDirector] startAnimation];
 }
 
-- (void)applicationWillTerminate:(UIApplication *)application
-{
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+- (void)applicationWillTerminate:(UIApplication *)application {
+	CCDirector *director = [CCDirector sharedDirector];
+	
+	[[director openGLView] removeFromSuperview];
+	
+	[viewController release];
+	
+	[window release];
+	
+	[director end];	
+}
+
+- (void)applicationSignificantTimeChange:(UIApplication *)application {
+	[[CCDirector sharedDirector] setNextDeltaTimeZero:YES];
+}
+
+- (void)dealloc {
+	[[CCDirector sharedDirector] release];
+	[window release];
+	[super dealloc];
 }
 
 @end

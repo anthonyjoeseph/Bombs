@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="17" height="15" tilewidth="50" tileheight="50">
+ <tileset firstgid="1" name="Tiles" tilewidth="50" tileheight="50">
+  <image source="Tileset2.png" width="256" height="256"/>
+  <tile id="0">
+   <properties>
+    <property name="Direction" value="kRight"/>
+    <property name="Type" value="Turret"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="Direction" value="kUp"/>
+    <property name="Type" value="Sentry"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="Type" value="BreakableBlock"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="Type" value="Block"/>
+   </properties>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="Direction" value="kDown"/>
+    <property name="Type" value="Turret"/>
+   </properties>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="Direction" value="kDown"/>
+    <property name="Type" value="Sentry"/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="Type" value="Player"/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="Type" value="Shark"/>
+   </properties>
+  </tile>
+  <tile id="10">
+   <properties>
+    <property name="Direction" value="kLeft"/>
+    <property name="Type" value="Turret"/>
+   </properties>
+  </tile>
+  <tile id="11">
+   <properties>
+    <property name="Direction" value="kRight"/>
+    <property name="Type" value="Sentry"/>
+   </properties>
+  </tile>
+  <tile id="12">
+   <properties>
+    <property name="Type" value="Ghost"/>
+   </properties>
+  </tile>
+  <tile id="13">
+   <properties>
+    <property name="Direction" value="Rotate"/>
+    <property name="Type" value="Turret"/>
+   </properties>
+  </tile>
+  <tile id="15">
+   <properties>
+    <property name="Direction" value="kUp"/>
+    <property name="Type" value="Turret"/>
+   </properties>
+  </tile>
+  <tile id="16">
+   <properties>
+    <property name="Direction" value="kLeft"/>
+    <property name="Type" value="Sentry"/>
+   </properties>
+  </tile>
+  <tile id="17">
+   <properties>
+    <property name="Type" value="Gangster"/>
+   </properties>
+  </tile>
+  <tile id="18">
+   <properties>
+    <property name="Type" value="FireLizard"/>
+   </properties>
+  </tile>
+  <tile id="20">
+   <properties>
+    <property name="Type" value="Soldier"/>
+   </properties>
+  </tile>
+  <tile id="21">
+   <properties>
+    <property name="Type" value="Heart"/>
+   </properties>
+  </tile>
+  <tile id="22">
+   <properties>
+    <property name="Type" value="StorBot"/>
+   </properties>
+  </tile>
+  <tile id="23">
+   <properties>
+    <property name="Direction" value="Rotate"/>
+    <property name="Type" value="Sentry"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Action" width="17" height="15">
+  <properties>
+   <property name="ColorValue0" value="255"/>
+   <property name="ColorValue1" value="0"/>
+   <property name="ColorValue2" value="0"/>
+   <property name="ColorValue3" value="100"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA61T0QrAIAiULVp7GIxF6///dAgKcrgVTEHuzDhMLRFRCvBCvmWDx8sd1VC+AtJkXjmfd+FdYmscN+HN5Ed1LIBfdajmBXgC7oCqFd2PKrya2u5BPrIO1cT3ZkDs10w/NsCZfnjzJ5P39id6Lmj8P3A/0IrR+OsPE4iJcfwDAAA=
+  </data>
+ </layer>
+</map>

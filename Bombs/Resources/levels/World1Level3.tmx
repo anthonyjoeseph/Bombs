@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="17" height="15" tilewidth="50" tileheight="50">
+ <tileset firstgid="1" name="Tileset" tilewidth="50" tileheight="50">
+  <image source="Tileset.png" width="150" height="200"/>
+  <tile id="0">
+   <properties>
+    <property name="Type" value="Soldier"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="Type" value="FireLizard"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="Type" value="Heart"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="Type" value="Sentry"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="Type" value="Turret"/>
+   </properties>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="Type" value="Shark"/>
+   </properties>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="Type" value="BreakableBlock"/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="Type" value="Block"/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="Type" value="Gangster"/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="Type" value="Player"/>
+   </properties>
+  </tile>
+  <tile id="11">
+   <properties>
+    <property name="Type" value="StorBot"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Action" width="17" height="15">
+  <properties>
+   <property name="ColorValue0" value="225"/>
+   <property name="ColorValue1" value="125"/>
+   <property name="ColorValue2" value="100"/>
+   <property name="ColorValue3" value="100"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA61SQQrAIAwLeKiK/3/vGCxQQ7vNzUAo1pLG2gqgbmDHDEMMc7FcpAYk2su8alCfPDEe/FHzro8leY2s8f21X0vyI/ChccWHgvNSZrW7ffAf+O6GGX5e5FcfemYu6hf5M7mnhp/Xyp6qRkG+H5m/7jT+8gCOCPoe/AMAAA==
+  </data>
+ </layer>
+</map>

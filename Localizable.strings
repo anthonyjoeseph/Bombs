@@ -1,0 +1,31 @@
+/* 
+  Localizable.strings
+  Bombs
+
+  Created by AnthonyGabriele on 1/26/13.
+  Copyright (c) 2013 AnthonyGabriele. All rights reserved.
+*/
+
+"GAME START ONE PLAYER" = "One Player";
+"GAME START TWO PLAYERS" = "Two Players";
+"PREFERENCES" = "Preferences";
+"HOW TO" = "How To";
+"GAME START" = "Play";
+"RESUME PAUSED GAME" = "Resume";
+"GO TO MAIN MENU" = "Main Menu";
+"WORLD" = "World";
+"LEVEL" = "Level";
+"PLAYER ONE INTERFACE IS D-PAD" = "Player One: D-Pad";
+"PLAYER ONE INTERFACE IS TOUCH" = "Player One: Touch";
+"PLAYER ONE INTERFACE IS LARGE D-PAD" = "Player One: Large D-Pad";
+"PLAYER TWO INTERFACE IS D-PAD" = "Player Two: D-Pad";
+"PLAYER TWO INTERFACE IS LARGE D-PAD" = "Player Two: Large D-Pad";
+"INTERFACE IS D-PAD" = "Interface: D-Pad";
+"INTERFACE IS TOUCH" = "Interface: Touch";
+"MUTE" = "Mute";
+"RETRY PREVIOUS LEVELS TO GET HEALTH BACK" = "Retry previous levels to get health back";
+"RETRY THE LEVEL" = "Retry";
+"SELECT ANOTHER LEVEL" = "Level Select";
+"NEXT LEVEL" = "Next Level";
+"CREATED BY ANTHONY GABRIELE AND SEAN REID" = "Created by Anthony Gabriele (Programmer) and Sean Reid (Drawings)";
+"POWERED BY COCOS2D" = "Powered by Cocos2d";

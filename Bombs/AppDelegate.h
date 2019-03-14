@@ -1,15 +1,21 @@
 //
 //  AppDelegate.h
-//  Bombs
+//  Detonate
 //
-//  Created by AnthonyGabriele on 1/26/13.
-//  Copyright (c) 2013 AnthonyGabriele. All rights reserved.
+//  Created by Anthony Gabriele on 1/13/12.
+//  Copyright __MyCompanyName__ 2012. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@class RootViewController;
 
-@property (strong, nonatomic) UIWindow *window;
+@interface AppDelegate : NSObject <UIApplicationDelegate> {
+	UIWindow			*window;
+	RootViewController	*viewController;
+}
+
+@property (nonatomic, retain) UIWindow *window;
+@property (nonatomic, retain) RootViewController *viewController;
 
 @end
